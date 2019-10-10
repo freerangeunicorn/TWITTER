@@ -14,31 +14,46 @@
 
 <body>
     <main class="container-fluid">
-        <div class="row container-fluid">
-            <div id="leftSideMenu" class="col-3"></div>
-            <div id="mainColumn"
-                class="col-6 px-0 container d-flex flex-column justify-content-center align-items-center">
-                <div id="header" class="row cotainer-fluid">
-                    <h3>Home</h3>
+        <div class="row">
+            <div id="leftSideMenu" class="col-3">
+                <div class="twittericon">
+                    <img src="img/twitter.png" class="birdimg">
                 </div>
-                <div id="mainTweet" class="row cotainer-fluid">
-                    <div id="avatar" class="col-1">
-                        <p>Image</p>
+                    <div class="card border-0" style="width: 15rem;">
+                            <div class="card-body">
+                              <h5 class="card-title mb-4"><i class="fas fa-home"></i>&nbsp Home</h5>
+                              <h5 class="card-title mb-4"><i class="fas fa-hashtag"></i>&nbsp Explore</h5>
+                              <h5 class="card-title mb-4"><i class="far fa-bell"></i>&nbsp Notification</h5>
+                              <h5 class="card-title mb-4"><i class="far fa-envelope"></i>&nbsp Messages</h5>
+                              <h5 class="card-title mb-4"><i class="far fa-bookmark"></i>&nbsp Bookmarks</h5>
+                              <h5 class="card-title mb-4"><i class="far fa-list-alt"></i>&nbsp Lists</h5>
+                              <h5 class="card-title mb-4"><i class="fas fa-user-circle"></i>&nbsp Profile</h5>
+                              <h5 class="card-title mb-4"><i class="fas fa-info-circle"></i>&nbsp More</h5>
+                              <a href="#" class="btn btn-primary rounded-pill btn-lg">Tweet</a>
+                            </div>
+                          </div>
+                </div>
+            <div id="mainColumn" class="col-6">
+                <div id="header" class="row">
+                    <h5 style="font-weight: 900">Home</h5>
+                </div>
+                <div id="mainTweet" class="row">
+                    <div id="avatar" class="col-2">
+                        <img src="images/avatar-placeholder.png" alt="avatar">
                     </div>
-                    <div id="tweetArea" class="col-11">
+                    <div id="tweetArea" class="col-10">
                         <div id="inputArea" class="row">
-                            <input type="text"></input>
+                            <textarea id="text" cols="300" rows="1" placeholder="What's happening?"></textarea>
                         </div>
                         <div id="buttonMainTweet" class="row">
                             <div id="leftButtonMainTweet" class="col-4">
-                                <button>a</button>
-                                <button>a</button>
-                                <button>a</button>
+                                <i class="far fa-image"></i>
+                                <i class="fas fa-paperclip"></i>
+                                <i class="far fa-smile"></i>
                             </div>
-                            <div class="col"></div>
-                            <div id="rightButtonMainTweet" class="col-4">
-                                <span id="remainingChars">140</span>
-                                <button id="tweetButton">a</button>
+                            <div id="rightButtonMainTweet" class="col">
+                                <span id="remainingChars">140 Characters Remaining</span>
+                                <button id="tweetButton" class="btn btn-primary">Tweet</button>
                             </div>
                         </div>
                     </div>
@@ -155,9 +170,51 @@
                 </div>
                 <!-- END OF TWEET FEED -->
             </div>
-            <div id="rightSideMenu" class="col-3"></div>
+            <div id="rightSideMenu" class="col-3">
+                <div class="input-group">
+                    <input class="form-control searchBar" placeholder="Search Tweeter" type="text">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="trend list-group list-group-flush font-weight-bold">
+                    <li class="h4 border-bottom">Trends for you</li>
+                    <li class="myLi">#Vietnam</li>
+                    <li class="myLi">Hong Kong</li>
+                    <li class="myLi">China</li>
+                    <li class="myLi">Ha Noi</li>
+                    <li class="myLi">style code</li>
+                    <li class="myLi"><a href="#">Show more</a></li>
+                </div>
+                <div class="trend list-group list-group-flush font-weight-bold">
+                    <li class="h4 border-bottom">Who to follow</li>
+                    <li class="myLi"><span>Mai</span><button type="button" class="btn-outline-primary myBtn">Follow</button></li>
+                    <li class="myLi"><span>Phong</span><button type="button" class="btn-outline-primary myBtn">Follow</button></li>
+                    <li class="myLi"><span>Hai</span><button type="button" class="btn-outline-primary myBtn">Follow</button></li>
+                    <li class="myLi"><span>Huy</span><button type="button" class="btn-outline-primary myBtn">Follow</button></li>
+                    <li class="myLi"><a href="#">Show more</a></li>
+                </div>
+                <div class="rightFooter">
+                    <div class="firstLine">
+                        <ul class="ulFoot">
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="#">Cookies</a></li>
+                            <li><a href="#">Ads info</a></li>
+                        </ul>
+                    </div>
+                    <div class="secondLine">
+                        <ul class="ulFoot">
+                            <li><a href="#">More</a></li>
+                            <li><i class="far fa-copyright"></i>2019 Twitter, Inc.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
+
 
     <script src="js/twitter.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
