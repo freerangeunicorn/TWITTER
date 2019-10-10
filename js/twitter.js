@@ -1,12 +1,16 @@
 let appState = {
+    
     currentUser: null,
     tweets:[
         {
             user: 'anonymous',
             body: null,
-            tweetTime: null,
+            tweetDate: null,
             hashtags: null,
             likes: null,
+            id: null,
+            
         }
     ]
 }
+
