@@ -2,8 +2,8 @@ body{
     background-color: lightgray;
 }
 div{
-    background-color: rgb(61, 110, 202);
-    border: 1px solid red;
+    background-color: white;
+    border: 1px solid gray;
 }
 #mainTweet {
     min-height: 7rem;
@@ -11,4 +11,28 @@ div{
 }
 #tweetTemplate{
     min-height: 7rem; 
+}
+
+.card-body{
+    border: none;
+    
+
+}
+
+.twittericon{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: transparent; 
+    
+}
+
+.birdimg{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.btn-lg {
+    width: 70%;
+    position: relative;
+    left: 50px;
 }
