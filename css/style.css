@@ -1,10 +1,10 @@
 body{
     background-color: lightgray;
 }
-div{
+/* div{
     background-color: rgb(61, 110, 202);
     border: 1px solid red;
-}
+} */
 #mainTweet {
     min-height: 7rem;
     margin-bottom: 1rem;
@@ -12,3 +12,53 @@ div{
 #tweetTemplate{
     min-height: 7rem; 
 }
+/* Right Side Menu */
+#rightSideMenu {
+    border: 2px white solid;
+    background-color: white;
+    padding-top: 5px;
+}
+
+.searchBar {
+    border-radius: 15px;
+}
+
+.trend {
+    margin-top: 2%;
+    margin-bottom: 6%;
+    background-color:#ccecdf;
+    list-style-type: none;
+    border-radius: 10px;
+    padding: 4% 4% 0% 4%;
+}
+ .myLi{
+    height: 40px;
+    line-height: 10px;
+    margin-bottom: 1px; 
+    position: relative;
+    top : 5px;
+    cursor: pointer;
+ }
+
+ .ulFoot {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    font-size: 14px;
+    position: relative;
+    right : 20px;
+    top : 5px;
+ }
+
+ .myBtn {
+     height: 30px;
+     padding-bottom: 1px;
+     width: 80px;
+     border-radius: 15px;
+     position: absolute;
+     right: 16px;
+     bottom: 23px;
+     background-color: transparent
+ }
+
+ /* Right Side Menu */
