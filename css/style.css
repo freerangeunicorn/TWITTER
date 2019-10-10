@@ -1,0 +1,14 @@
+body{
+    background-color: lightgray;
+}
+div{
+    background-color: rgb(61, 110, 202);
+    border: 1px solid red;
+}
+#mainTweet {
+    min-height: 7rem;
+    margin-bottom: 1rem;
+}
+#tweetTemplate{
+    min-height: 7rem; 
+}

@@ -1,19 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Twitter</title>
 </head>
+
 <body>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="js/twitter.js"></script>
+    <main class="container-fluid">
+        <div class="row">
+            //-----------------This is left section------------------
+            <div id="leftSideMenu" class="col-3"></div>
+            //-----------------------END----------------------------
+            //------------------This is main content---------------------------------
+            <div id="mainColumn" class="col-6">
+                <div id="header" class="row">
+                    <h3>Home</h3>
+                </div>
+                <div id="mainTweet" class="row">
+                    <div id="avatar" class="col-1">
+                        <p>Image</p>
+                    </div>
+                    <div id="tweetArea" class="col-11">
+                        <div id="inputArea" class="row">
+                            <input type="text"></input>
+                        </div>
+                        <div id="buttonMainTweet" class="row">
+                            <div id="leftButtonMainTweet" class="col-4">
+                                <button>a</button>
+                                <button>a</button>
+                                <button>a</button>
+                            </div>
+                            <div class="col"></div>
+                            <div id="rightButtonMainTweet" class="col-4">
+                                <span id="remainingChars">140</span>
+                                <button id="tweetButton">a</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="feed" class="col">
+                        <div id="tweetTemplate" class="row">
+                            <div id="feedAvatar" class="col-2">Image</div>
+                            <div id="content" class="col">
+                                <div id="text" class="row">Hello world!</div>
+                                <div id="contentButton" class="row">
+                                    <button>a</button>
+                                    <button>a</button>
+                                    <button>a</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rightSideMenu" class="col-3"></div>
+        </div>
+        //-----------------This is left section------------------
+        <div id="leftSideMenu" class="col-3"></div>
+        //-----------------------END----------------------------
+    </main>
+
+    <script src="js/twitter.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="js/twitter.js"></script>
 </body>
+
 </html>
