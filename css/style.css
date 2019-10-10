@@ -1,3 +1,7 @@
+* :focus {
+    outline: none;
+}
+
 /* header */
 #header, #mainTweet{
     border: 0.5px solid rgb(246,248,250);
@@ -12,6 +16,15 @@
 
 #tweetTemplate{
     min-height: 7rem; 
+}
+
+/* this removes resize button at the right corner of the text area */
+textarea {
+    resize: none;
+}
+/* this removes ouline box when text area in focus */
+textarea :focus {
+    outline: none;
 }
 
 .text {
