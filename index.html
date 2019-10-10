@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Twitter</title>
 </head>
@@ -18,26 +18,25 @@
             <div id="leftSideMenu" class="col-3"></div>
             <div id="mainColumn" class="col-6">
                 <div id="header" class="row">
-                    <h3>Home</h3>
+                    <h5 style="font-weight: 900">Home</h5>
                 </div>
                 <div id="mainTweet" class="row">
-                    <div id="avatar" class="col-1">
-                        <p>Image</p>
+                    <div id="avatar" class="col-2">
+                        <img src="images/avatar-placeholder.png" alt="avatar">
                     </div>
-                    <div id="tweetArea" class="col-11">
+                    <div id="tweetArea" class="col-10">
                         <div id="inputArea" class="row">
-                            <input type="text"></input>
+                            <textarea id="text" cols="300" rows="1" placeholder="What's happening?"></textarea>
                         </div>
                         <div id="buttonMainTweet" class="row">
                             <div id="leftButtonMainTweet" class="col-4">
-                                <button>a</button>
-                                <button>a</button>
-                                <button>a</button>
+                                <i class="far fa-image"></i>
+                                <i class="fas fa-paperclip"></i>
+                                <i class="far fa-smile"></i>
                             </div>
-                            <div class="col"></div>
-                            <div id="rightButtonMainTweet" class="col-4">
-                                <span id="remainingChars">140</span>
-                                <button id="tweetButton">a</button>
+                            <div id="rightButtonMainTweet" class="col">
+                                <span id="remainingChars">140 Characters Remaining</span>
+                                <button id="tweetButton" class="btn btn-primary">Tweet</button>
                             </div>
                         </div>
                     </div>
@@ -45,7 +44,8 @@
                 <div class="row">
                     <div id="feed" class="col">
                         <div id="tweetTemplate" class="row">
-                            <div id="feedAvatar" class="col-2">Image</div>
+                            <div id="feedAvatar" class="col-2">
+                            </div>
                             <div id="content" class="col">
                                 <div id="text" class="row">Hello world!</div>
                                 <div id="contentButton" class="row">
@@ -60,8 +60,9 @@
             </div>
             <div id="rightSideMenu" class="col-3"></div>
         </div>
-        <div id="leftSideMenu" class="col-3"></div>
     </main>
+
+
 
     <script src="js/twitter.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
