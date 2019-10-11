@@ -12,7 +12,7 @@ let num = 0;
 
 //call API
 async function getApi(){ 
-    let response = await fetch('https://api.myjson.com/bins/nzrgi');
+    let response = await fetch('https://api.myjson.com/bins/17rdla');
     let user = await response.json();
     // appState = JSON.parse(user)
     // console.log(user, typeof(user));
