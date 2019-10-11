@@ -83,7 +83,7 @@ const saveTweet = (currentUser, tweetBody, parentId ) => {
 
 const renderTweets = () => {
     let HTML = appState.tweets.map(tweet => {
-        if (tweet.parentId === null) {
+        if (tweet.parent === null) {
             console.log('start render tweet, id: ', tweet.id);
             let tweetBodySplitedByWords = tweet.body.split(' ');
             let tweetBodyHTML = tweetBodySplitedByWords.map(word => word[0] == '#' ? `<a href='#'>${word}</a>` : word ).join(' ');
@@ -109,7 +109,7 @@ const renderTweets = () => {
                     <div id="contentButton" class="row  m-0">
                         <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
                             <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                            <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
+                            <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
                             <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
                             ${tweet.isLiked ? 
                             '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
@@ -122,16 +122,17 @@ const renderTweets = () => {
             `
         } else {
             console.log('start render retweet, id: ', tweet.id);
-            return renderreTweet(tweet);
+            return renderReTweet(tweet);
         }
     }).join('');
-    console.log(HTML)
+    // console.log(HTML)
     HTML !== null ? feedArea.innerHTML = HTML : console.log('nothing inside HTML, abort renderTweets');
 }
 
 // this func in charge of render the retweets
-const renderreTweet = (tweet) => {
-    let parentTweet = appState.tweets.find(t => t.id == tweet.parentId);
+const renderReTweet = (tweet) => {
+    let parentTweet = appState.tweets.find(t => t.id == tweet.parent);
+    // console.log("prent tweet",parentTweet)
     let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' ? `<a href='#'>${word}</a>` : word ).join(' ');
     return `
     <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
@@ -169,18 +170,6 @@ const renderreTweet = (tweet) => {
                                 </div>
                                 <p id="tweetBody${parentTweet.id}" class="text-left">${parentTweetBodyHTML}</p>
                             </div>
-            
-                            <div id="contentButton" class="row  m-0">
-                                <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
-                                    <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                                    <a id="retweetBtn${parentTweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
-                                    <a id="likeBtn${parentTweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${parentTweet.id})">
-                                    ${parentTweet.isLiked ? 
-                                    '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
-                                    : '<i class="far fa-heart rounded-circle"></i>'}</a>
-                                    <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- End of parent tweet content -->  
@@ -191,7 +180,7 @@ const renderreTweet = (tweet) => {
             <div id="contentButton" class="row  m-0">
                 <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
                     <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                    <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
+                    <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
                     <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
                     ${tweet.isLiked ? 
                     '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
