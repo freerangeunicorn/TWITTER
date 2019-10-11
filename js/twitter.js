@@ -10,6 +10,7 @@ const tweetButton = document.getElementById('tweetButton');
 const feedArea = document.getElementById('feed');
 let num = 0;
 
+// there blow belong to character count
 const allowedChars = 140;
 let count = 0;
 let remainingNumber = allowedChars;
@@ -78,7 +79,7 @@ const saveTweet = (currentUser, tweetBody, parentId ) => {
         id : num,
         isLiked : false,
         parent : parentId,
-        isRetweeted : false
+        isRetweeted : false,
     });
 }
 
@@ -131,16 +132,17 @@ const toggleLike = index => {
 
 //retweet btn
 const retweet = id => {
-    console.log("appstate", appState)
     const parentTweet = appState.tweets.find(tweet => tweet.id == id)
     parentTweet.isRetweeted = true;
-    let tweetedBody = document.getElementById(`tweet${id}`).innerHTML;
+    let tweetedBody = parentTweet.body
     // console.log("body", tweetedBody)
-    
-    console.log("tweet body", tweetedBody)
     saveTweet(appState.currentUser, tweetedBody, id);
+    // console.log(appState)
     renderTweets();
 }
+
+
+
 
 // calling functions
 handleTextField();
