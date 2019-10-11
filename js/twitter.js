@@ -1,7 +1,7 @@
 
 let appState = {
     currentUser: 'anonymous',
-    tweets: []
+    tweets: [],
 }
 
 const textField = document.getElementById('text');
@@ -74,7 +74,7 @@ const saveTweet = (currentUser, tweetBody) => {
         body : tweetBody,
         tweetDate : new Date(),
         id : (appState.tweets.length + 1),
-        likes : false,
+        isLiked : false,
     });
 }
 
@@ -103,7 +103,10 @@ const renderTweets = () => {
                     <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
                         <a id="commentBtn" class="faButton text-decoration-none mr-2" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
                         <a id="retweetBtn" class="faButton text-decoration-none mr-2" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
-                        <a id="likeBtn" class="faButton text-decoration-none mr-2" href="#"><i class="far fa-heart rounded-circle"></i>255</a>
+                        <a id="likeBtn" class="faButton text-decoration-none mr-2" onclick="toggleLike(${tweet.id})">
+                        ${tweet.isLiked ? 
+                        '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
+                        : '<i class="far fa-heart rounded-circle"></i>'}</a>
                         <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                     </div>
                 </div>
@@ -111,8 +114,20 @@ const renderTweets = () => {
         </div>\n
         `
     }).join('');
+    console.log(HTML)
     HTML !== null ? feedArea.innerHTML = HTML : console.log('nothing inside HTML, abort renderTweets');
 }
 // calling functions
 handleTextField();
+
+//toggle like btn
+const toggleLike = index => {
+    console.log("index", index)
+    console.log("tweets", appState.tweets)
+    appState.tweets[index - 1].isLiked = !appState.tweets[index - 1].isLiked;
+    renderTweets();
+  }
+
+
+
 
