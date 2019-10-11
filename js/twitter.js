@@ -134,9 +134,9 @@ const retweet = id => {
     console.log("appstate", appState)
     const parentTweet = appState.tweets.find(tweet => tweet.id == id)
     parentTweet.isRetweeted = true;
-    let tweetedBody = document.getElementById(`tweet${id}`).innerHTML;
+    let tweetedBody = parentTweet.body;
     // console.log("body", tweetedBody)
-    
+
     console.log("tweet body", tweetedBody)
     saveTweet(appState.currentUser, tweetedBody, id);
     renderTweets();
@@ -146,6 +146,9 @@ const retweet = id => {
 handleTextField();
 
 const deleteTweet = (id) =>{
+    appState.tweets = appState.tweets.filter(tweet=>{return tweet.parent != id});
+    console.log(appState.tweets,"don't have retweet")
     appState.tweets = appState.tweets.filter(tweet => { return tweet.id != id});
+    console.log(appState,"deleted");
     renderTweets();
 }
