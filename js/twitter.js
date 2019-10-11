@@ -129,5 +129,9 @@ const toggleLike = index => {
   }
 
 
+function delete (id) {
+    let currentTweet = tweetList.find(tweet => tweet.id == id);
 
+    if (currentTweet.isTweet)
+}
 
