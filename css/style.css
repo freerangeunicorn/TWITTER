@@ -146,11 +146,15 @@ textarea :focus {
 }
 /* Header  */
 /* Right Side Menu */
+@media screen and (max-width: 800px){
 #rightSideMenu {
     border: 2px white solid;
     background-color: white;
     padding-top: 5px;
-}
+    visibility: hidden;
+    clear: both;
+    display: none;
+}}
 
 .searchBar {
     border-radius: 15px;
@@ -209,3 +213,16 @@ textarea :focus {
     border-radius: 50%;
 }
  /* Right Side Menu */
+
+/* add style to js */
+.img-add {
+    width: 70%;
+    height: auto;
+}
+
+.avatarLee {
+    width: 40px;
+    height: auto;
+    border-radius: 50%
+}
+
