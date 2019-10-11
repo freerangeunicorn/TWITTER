@@ -55,7 +55,7 @@ const handleTweetButton = () => {
     let userInput = textField.value;
     
     //save tweet to appState
-    saveTweet(appState.currentUser, userInput);
+    saveTweet(appState.currentUser, userInput, null);
     //render to screen
     renderTweets();
     //clearing text field
@@ -67,7 +67,7 @@ const handleTweetButton = () => {
 }
 
 //save tweet to appState
-const saveTweet = (currentUser, tweetBody, parentId) => {
+const saveTweet = (currentUser, tweetBody, parentId ) => {
     num++;
     appState.tweets.push({
         user : currentUser,
@@ -129,7 +129,7 @@ const renderTweets = () => {
 }
 
 // this func in charge of render the retweets
-const renderTweets = (tweet) => {
+const renderreTweet = (tweet) => {
     let parentTweet = appState.tweets.find(t => t.id == tweet.parentId);
     let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' ? `<a href='#'>${word}</a>` : word ).join(' ');
     return `
@@ -211,6 +211,20 @@ const toggleLike = index => {
     const likeBtn = document.getElementById(`likeBtn${index}`);
     currentTweet.isLiked ? likeBtn.innerHTML = '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>' : likeBtn.innerHTML = '<i class="far fa-heart rounded-circle"></i>';
 }
+
+//retweet btn
+const retweet = id => {
+    console.log("appstate", appState)
+    const parentTweet = appState.tweets.find(tweet => tweet.id == id)
+    parentTweet.isRetweeted = true;
+    let tweetedBody = document.getElementById(`tweet${id}`).innerHTML;
+    // console.log("body", tweetedBody)
+    
+    console.log("tweet body", tweetedBody)
+    saveTweet(appState.currentUser, tweetedBody, id);
+    renderTweets();
+}
+
 // calling functions
 handleTextField();
 
