@@ -27,3 +27,11 @@ Optional Stories
 - [ ]Any tweet with an image URL will have the image automatically expanded in the tweet.
 
 
+### things to improve:
+
+#### functions
+* change order of tweets by newest first
+
+
+#### design
+* responsive optimized
