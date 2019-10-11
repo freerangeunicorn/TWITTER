@@ -81,7 +81,7 @@ const saveTweet = (currentUser, tweetBody) => {
 const renderTweets = () => {
     let HTML = appState.tweets.map(tweet => {
         return `
-        <div id="tweetTemplate" class="row container-fluid border p-0 m-0 mb-1">
+        <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
             <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
                 <img src="img/avatar-placeholder.png" alt="avatar-img" width="50" height="auto">
             </div>
@@ -102,7 +102,7 @@ const renderTweets = () => {
                 <div id="contentButton" class="row  m-0">
                     <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
                         <a id="commentBtn" class="faButton text-decoration-none mr-2" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                        <a id="retweetBtn" class="faButton text-decoration-none mr-2" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
+                        <a id="retweetBtn" class="faButton text-decoration-none mr-2" href="#" onclick="retweet(${tweet.id})"><i class="fas fa-retweet rounded-circle"></i>130</a>
                         <a id="likeBtn" class="faButton text-decoration-none mr-2" onclick="toggleLike(${tweet.id})">
                         ${tweet.isLiked ? 
                         '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
@@ -117,17 +117,23 @@ const renderTweets = () => {
     console.log(HTML)
     HTML !== null ? feedArea.innerHTML = HTML : console.log('nothing inside HTML, abort renderTweets');
 }
-// calling functions
-handleTextField();
+
 
 //toggle like btn
-const toggleLike = index => {
-    console.log("index", index)
+const toggleLike = id => {
+    console.log("index", id)
     console.log("tweets", appState.tweets)
-    appState.tweets[index - 1].isLiked = !appState.tweets[index - 1].isLiked;
+    appState.tweets[id - 1].isLiked = !appState.tweets[id - 1].isLiked;
     renderTweets();
   }
 
+//retweet btn
+const retweet = id => {
+    let retweetItem = document.getElementById(`tweet${id}`).innerHTML;
+    console.log("retweet", retweetItem)
+    feedArea.innerHTML += retweetItem;
+}
 
-
+// calling functions
+handleTextField();
 
