@@ -21,7 +21,7 @@
                 </div>
                     <div class="card border-0" style="width: 15rem;">
                             <div class="card-body">
-                                <h5 class="card-title mb-4"><i class="fas fa-home"></i>&nbsp Home</h5>
+                                <h5 class="card-title mb-4"><i class="fas fa-home" onclick="renderTweets(appState.tweets)"></i>&nbsp Home</h5>
                                 <h5 class="card-title mb-4"><i class="fas fa-hashtag"></i>&nbsp Explore</h5>
                                 <h5 class="card-title mb-4"><i class="far fa-bell"></i>&nbsp Notification</h5>
                                 <h5 class="card-title mb-4"><i class="far fa-envelope"></i>&nbsp Messages</h5>
@@ -58,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="" id="refresh" onclick="renderTweets(appState.tweets)"></div>
                 <!-- Tweet Feed by Hai-->
                 <div class="row p-0 m-0 container-fluid border">
                     <div id="feed" class="col container-fluid p-0 m-0 border">
