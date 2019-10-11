@@ -10,6 +10,19 @@ const tweetButton = document.getElementById('tweetButton');
 const feedArea = document.getElementById('feed');
 let num = 0;
 
+//call API
+async function getApi(){ 
+    let response = await fetch('https://api.myjson.com/bins/nzrgi');
+    let user = await response.json();
+    // appState = JSON.parse(user)
+    console.log(user, typeof(user));
+    appState = user;
+    console.log("appstate", appState)
+    renderTweets(appState.tweets)
+}
+
+
+
 // there blow belong to character count
 const allowedChars = 140;
 let count = 0;
@@ -58,7 +71,7 @@ const handleTweetButton = () => {
     //save tweet to appState
     saveTweet(appState.currentUser, userInput, null);
     //render to screen
-    renderTweets();
+    renderTweets(appState.tweets);
     //clearing text field
     textField.value = '';
     //reset character remaining counter
@@ -81,12 +94,12 @@ const saveTweet = (currentUser, tweetBody, parentId ) => {
     });
 }
 
-const renderTweets = () => {
-    let HTML = appState.tweets.map(tweet => {
+const renderTweets = (arr) => {
+    let HTML = arr.map(tweet => {
         if (tweet.parent === null) {
-            console.log('start render tweet, id: ', tweet.id);
+            // console.log('start render tweet, id: ', tweet.id);
             let tweetBodySplitedByWords = tweet.body.split(' ');
-            let tweetBodyHTML = tweetBodySplitedByWords.map(word => word[0] == '#' || '@' ? `<a href='#'>${word}</a>` : word ).join(' ');
+            let tweetBodyHTML = tweetBodySplitedByWords.map(word => word[0] == '#' || word[0] == '@' ? `<a href='#' onclick="findHastag('${word}')">${word}</a>` : word ).join(' ');
             return `
             <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
                 <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
@@ -133,7 +146,7 @@ const renderTweets = () => {
 const renderReTweet = (tweet) => {
     let parentTweet = appState.tweets.find(t => t.id == tweet.parent);
     // console.log("prent tweet",parentTweet)
-    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' || '@' ? `<a href='#'>${word}</a>` : word ).join(' ');
+    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' || word[0] == '@' ? `<a href='#' onclick="findHastag(${word})">${word}</a>` : word ).join(' ');
     return `
     <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
         <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
@@ -208,7 +221,7 @@ const retweet = id => {
     // console.log("body", tweetedBody)
     saveTweet(appState.currentUser, tweetedBody, id);
     // console.log(appState)
-    renderTweets();
+    renderTweets(appState.tweets);
 }
 
 //delete function
@@ -217,16 +230,22 @@ const deleteTweet = (id) =>{
     console.log(appState.tweets,"don't have retweet")
     appState.tweets = appState.tweets.filter(tweet => { return tweet.id != id});
     console.log(appState,"deleted");
-    renderTweets();
+    renderTweets(appState.tweets);
 }
 
+//add hastag find
 const findHastag = (hastag) => {
+    console.log("hastag", hastag)
     let hasHastag = appState.tweets.filter(twit => {
-        return twit.body.split(' ').filter(word => word === hastag)
-    })
-    console.log(hasHastag);
+        
+        return twit.body.includes(hastag);
+        })
+    console.log("hasHagtag", hasHastag)
+    document.getElementById("refresh").innerHTML= `${hastag} x`;
+    renderTweets(hasHastag);
 }
 
 // calling functions
 handleTextField();
+getApi();
 
