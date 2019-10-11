@@ -19,19 +19,20 @@
                 <div class="twittericon">
                     <img src="img/twitter.png" class="birdimg">
                 </div>
-                    <div class="card border-0" style="width: 15rem;">
-                            <div class="card-body">
-                                <h5 class="card-title mb-4"><i class="fas fa-home" onclick="renderTweets(appState.tweets)"></i>&nbsp Home</h5>
-                                <h5 class="card-title mb-4"><i class="fas fa-hashtag"></i>&nbsp Explore</h5>
-                                <h5 class="card-title mb-4"><i class="far fa-bell"></i>&nbsp Notification</h5>
-                                <h5 class="card-title mb-4"><i class="far fa-envelope"></i>&nbsp Messages</h5>
-                                <h5 class="card-title mb-4"><i class="far fa-bookmark"></i>&nbsp Bookmarks</h5>
-                                <h5 class="card-title mb-4"><i class="far fa-list-alt"></i>&nbsp Lists</h5>
-                                <h5 class="card-title mb-4"><i class="fas fa-user-circle"></i>&nbsp Profile</h5>
-                                <h5 class="card-title mb-4"><i class="fas fa-info-circle"></i>&nbsp More</h5>
-                                <a href="#" class="btn btn-primary rounded-pill btn-lg">Tweet</a>
-                            </div>
-                        </div>
+                <div class="card border-0" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4"><i class="fas fa-home"
+                                onclick="renderTweets(appState.tweets)"></i>&nbsp Home</h5>
+                        <h5 class="card-title mb-4"><i class="fas fa-hashtag"></i>&nbsp Explore</h5>
+                        <h5 class="card-title mb-4"><i class="far fa-bell"></i>&nbsp Notification</h5>
+                        <h5 class="card-title mb-4"><i class="far fa-envelope"></i>&nbsp Messages</h5>
+                        <h5 class="card-title mb-4"><i class="far fa-bookmark"></i>&nbsp Bookmarks</h5>
+                        <h5 class="card-title mb-4"><i class="far fa-list-alt"></i>&nbsp Lists</h5>
+                        <h5 class="card-title mb-4"><i class="fas fa-user-circle"></i>&nbsp Profile</h5>
+                        <h5 class="card-title mb-4"><i class="fas fa-info-circle"></i>&nbsp More</h5>
+                        <a href="#" class="btn btn-primary rounded-pill btn-lg">Tweet</a>
+                    </div>
+                </div>
             </div>
             <div id="mainColumn" class="col-6">
                 <div id="header" class="row">
@@ -43,7 +44,8 @@
                     </div>
                     <div id="tweetArea" class="col-10">
                         <div id="inputArea" class="row">
-                            <textarea id="text" cols="300" rows="1" placeholder="What's happening?" aria-expanded="false"></textarea>
+                            <textarea id="text" cols="300" rows="1" placeholder="What's happening?"
+                                aria-expanded="false"></textarea>
                         </div>
                         <div id="buttonMainTweet" class="row">
                             <div id="leftButtonMainTweet" class="col-4">
@@ -53,7 +55,8 @@
                             </div>
                             <div id="rightButtonMainTweet" class="col">
                                 <span id="remainingChars">140 characters remaining</span>
-                                <button id="tweetButton" class="btn btn-primary ml-4" onclick="handleTweetButton()">Tweet</button>
+                                <button id="tweetButton" class="btn btn-primary ml-4"
+                                    onclick="handleTweetButton()">Tweet</button>
                             </div>
                         </div>
                     </div>
@@ -63,7 +66,7 @@
                 <div class="row p-0 m-0 container-fluid border">
                     <div id="feed" class="col container-fluid p-0 m-0 border">
                         <!-- Tweet Template - this should be rendered by Js -->
-                        <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
+                        <!-- <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
 
                             <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
                                 <img src="images/avatar-placeholder.png" alt="avatar-img" width="50" height="auto">
@@ -100,31 +103,31 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- END OF TWEET TEMPLATE -->
 
                         <!-- Tweet Template with Retweet - this should be rendered by Js -->
                         <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
 
-                            <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
+                            <!-- <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
                                 <img src="images/avatar-placeholder.png" alt="avatar-img" width="50" height="auto">
-                            </div>
+                            </div> -->
 
-                            <div id="content" class="col-11 py-2 pl-3 pr-1">
-                                <div id="text" class="row container m-0 pl-0 pr-3">
-                                    <div class="row m-0 mb-1 container-fluid p-0">
-                                        <div id="tweetTitle" class="col-8 pl-0 mt-1">
+                            <!-- <div id="content" class="col-11 py-2 pl-3 pr-1"> -->
+                                <!-- <div id="text" class="row container m-0 pl-0 pr-3"> -->
+                                    <!-- <div class="row m-0 mb-1 container-fluid p-0"> -->
+                                        <!-- <div id="tweetTitle" class="col-8 pl-0 mt-1">
                                             <span><strong>L. Messi</strong> @LionelMessi</span> • <span>15 mins</span>
-                                        </div>
-                                        <div class="col"></div>
+                                        </div> -->
+                                        <!-- <div class="col"></div>
                                         <div class="col-1 p-0 text-right">
                                             <a id="expandBtn" class="faButton text-decoration-none rounded-circle"
                                                 href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <!-- Tweet Template - this should be rendered by Js -->
-                                    <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
+                                    <!-- <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
 
                                         <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
                                             <img src="images/avatar-placeholder.png" alt="avatar-img" width="50"
@@ -184,25 +187,29 @@
                                             <a id="likeBtn" class="faButton text-decoration-none mr-2" href="#"><i class="far fa-heart rounded-circle"></i>255</a>
                                             <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- END OF TWEET TEMPLATE -->
-                                </div>
-                            </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
                             <!-- END OF TWEET TEMPLATE -->
-                                    </div>
-    
-                                    <div id="contentButton" class="row  m-0">
-                                        <div class="col-12 col-md-8 col-lg-5 d-flex justify-content-between p-0">
-                                            <a id="commentBtn" class="faButton text-decoration-none mr-2" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                                            <a id="retweetBtn" class="faButton text-decoration-none mr-2" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
-                                            <a id="likeBtn" class="faButton text-decoration-none mr-2" href="#"><i class="far fa-heart rounded-circle"></i>255</a>
-                                            <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <!-- END OF TWEET TEMPLATE -->
+
+                        <!-- <div id="contentButton" class="row  m-0">
+                            <div class="col-12 col-md-8 col-lg-5 d-flex justify-content-between p-0">
+                                <a id="commentBtn" class="faButton text-decoration-none mr-2" href="#"><i
+                                        class="far fa-comment rounded-circle"></i>20</a>
+                                <a id="retweetBtn" class="faButton text-decoration-none mr-2" href="#"><i
+                                        class="fas fa-retweet rounded-circle"></i>130</a>
+                                <a id="likeBtn" class="faButton text-decoration-none mr-2" href="#"><i
+                                        class="far fa-heart rounded-circle"></i>255</a>
+                                <a id="shareBtn" class="faButton text-decoration-none" href="#"><i
+                                        class="far fa-share-square rounded-circle"></i></a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <!-- END OF TWEET TEMPLATE -->
             <div id="rightSideMenu" class="col-3">
                 <div class="input-group">
                     <input class="form-control searchBar" placeholder="Search Tweeter" type="text">
@@ -222,16 +229,16 @@
                 <div class="trend list-group list-group-flush font-weight-bold">
                     <li class="h4 border-bottom">Who to follow</li>
                     <li class="myLi"><img src="images/mai.png" class="mai" alt="Avatar" width="35"
-                        height="auto"><span>&nbsp Mai</span><button type="button"
+                            height="auto"><span>&nbsp Mai</span><button type="button"
                             class="btn-outline-primary myBtn">Follow</button></li>
                     <li class="myLi"><img src="images/phongavatar.png" class="phong" alt="Avatar" width="35"
-                        height="auto"><span>&nbsp Phong</span><button type="button"
+                            height="auto"><span>&nbsp Phong</span><button type="button"
                             class="btn-outline-primary myBtn">Follow</button></li>
                     <li class="myLi"><img src="images/ahai.png" class="hai" alt="Avatar" width="35"
-                        height="auto"><span>&nbsp Hai</span><button type="button"
+                            height="auto"><span>&nbsp Hai</span><button type="button"
                             class="btn-outline-primary myBtn">Follow</button></li>
                     <li class="myLi"><img src="images/huy.png" class="huy" alt="Avatar" width="35"
-                        height="auto"><span>&nbsp Huy</span><button type="button"
+                            height="auto"><span>&nbsp Huy</span><button type="button"
                             class="btn-outline-primary myBtn">Follow</button></li>
                     <li class="myLi"><a href="#">Show more</a></li>
                 </div>
@@ -257,7 +264,7 @@
 
 
 
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
