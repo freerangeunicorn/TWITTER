@@ -1,6 +1,6 @@
 
 let appState = {
-    currentUser: 'anonymous',
+    currentUser: 'Charles Lee',
     tweets: [],
 }
 
@@ -97,7 +97,7 @@ const renderTweets = () => {
                         </div>
                         <div class="col"></div>
                         <div class="col-1 p-0 text-right">
-                            <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
+                            <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" href="#"><i onclick="deleteTweet(${tweet.id})" class="fas fa-chevron-down rounder-circle"></i></a>
                         </div>
                     </div>
                     <p id="tweetBody${tweet.id}" class="text-left">${tweet.body}</p>
@@ -132,3 +132,7 @@ const toggleLike = index => {
 // calling functions
 handleTextField();
 
+const deleteTweet = (id) =>{
+    appState.tweets = appState.tweets.filter(tweet => { return tweet.id != id});
+    renderTweets();
+}
