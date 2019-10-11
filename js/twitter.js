@@ -8,6 +8,7 @@ const textField = document.getElementById('text');
 const remainingChars = document.getElementById('remainingChars');
 const tweetButton = document.getElementById('tweetButton');
 const feedArea = document.getElementById('feed');
+let num = 0;
 
 const allowedChars = 140;
 let count = 0;
@@ -69,19 +70,22 @@ const handleTweetButton = () => {
 
 //save tweet to appState
 const saveTweet = (currentUser, tweetBody) => {
+    num++;
     appState.tweets.push({
         user : currentUser,
         body : tweetBody,
         tweetDate : new Date(),
-        id : (appState.tweets.length + 1),
+        id : num,
         isLiked : false,
+        parent : null,
+        isRetweeted : false
     });
 }
 
 const renderTweets = () => {
     let HTML = appState.tweets.map(tweet => {
         return `
-        <div id="tweetTemplate" class="row container-fluid border p-0 m-0 mb-1">
+        <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
             <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
                 <img src="img/avatar-placeholder.png" alt="avatar-img" width="50" height="auto">
             </div>
@@ -93,17 +97,17 @@ const renderTweets = () => {
                         </div>
                         <div class="col"></div>
                         <div class="col-1 p-0 text-right">
-                            <a id="expandBtn" class="faButton text-decoration-none rounded-circle" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
+                            <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
                         </div>
                     </div>
-                    <p id="tweetBody" class="text-left">${tweet.body}</p>
+                    <p id="tweetBody${tweet.id}" class="text-left">${tweet.body}</p>
                 </div>
 
                 <div id="contentButton" class="row  m-0">
                     <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
-                        <a id="commentBtn" class="faButton text-decoration-none mr-2" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                        <a id="retweetBtn" class="faButton text-decoration-none mr-2" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
-                        <a id="likeBtn" class="faButton text-decoration-none mr-2" onclick="toggleLike(${tweet.id})">
+                        <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
+                        <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
+                        <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
                         ${tweet.isLiked ? 
                         '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
                         : '<i class="far fa-heart rounded-circle"></i>'}</a>
@@ -117,21 +121,14 @@ const renderTweets = () => {
     console.log(HTML)
     HTML !== null ? feedArea.innerHTML = HTML : console.log('nothing inside HTML, abort renderTweets');
 }
-// calling functions
-handleTextField();
 
 //toggle like btn
 const toggleLike = index => {
-    console.log("index", index)
-    console.log("tweets", appState.tweets)
-    appState.tweets[index - 1].isLiked = !appState.tweets[index - 1].isLiked;
-    renderTweets();
-  }
-
-
-function delete (id) {
-    let currentTweet = tweetList.find(tweet => tweet.id == id);
-
-    if (currentTweet.isTweet)
+    const currentTweet = appState.tweets.find(tweet => tweet.id == index);
+    currentTweet.isLiked = !currentTweet.isLiked;
+    const likeBtn = document.getElementById(`likeBtn${index}`);
+    currentTweet.isLiked ? likeBtn.innerHTML = '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>' : likeBtn.innerHTML = '<i class="far fa-heart rounded-circle"></i>';
 }
+// calling functions
+handleTextField();
 
