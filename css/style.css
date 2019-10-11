@@ -40,27 +40,27 @@ textarea :focus {
     padding: 10px;
 }
 
-#commentBtn :hover {
+.commentBtn :hover {
     background-color: rgb(223, 236, 247);
     color: rgb(155, 190, 218);
 }
 
-#retweetBtn :hover {
+.retweetBtn :hover {
     background-color: rgb(223, 247, 227);
     color: rgb(143, 199, 152);
 }
 
-#likeBtn :hover {
+.likeBtn :hover {
     background-color: rgb(247, 223, 223);
     color: rgb(190, 128, 128);
 }
 
-#shareBtn :hover {
+.shareBtn :hover {
     background-color: rgb(223, 236, 247);
     color: rgb(155, 190, 218);
 }
 
-#expandBtn :hover{
+.expandBtn :hover{
     background-color: rgb(223, 236, 247);
     color: rgb(155, 190, 218);
 }
