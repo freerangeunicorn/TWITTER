@@ -86,7 +86,7 @@ const renderTweets = () => {
         if (tweet.parent === null) {
             console.log('start render tweet, id: ', tweet.id);
             let tweetBodySplitedByWords = tweet.body.split(' ');
-            let tweetBodyHTML = tweetBodySplitedByWords.map(word => word[0] == '#' ? `<a href='#'>${word}</a>` : word ).join(' ');
+            let tweetBodyHTML = tweetBodySplitedByWords.map(word => word[0] == '#' || '@' ? `<a href='#'>${word}</a>` : word ).join(' ');
             return `
             <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
                 <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
@@ -133,7 +133,7 @@ const renderTweets = () => {
 const renderReTweet = (tweet) => {
     let parentTweet = appState.tweets.find(t => t.id == tweet.parent);
     // console.log("prent tweet",parentTweet)
-    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' ? `<a href='#'>${word}</a>` : word ).join(' ');
+    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' || '@' ? `<a href='#'>${word}</a>` : word ).join(' ');
     return `
     <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
         <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
@@ -220,6 +220,12 @@ const deleteTweet = (id) =>{
     renderTweets();
 }
 
+const findHastag = (hastag) => {
+    let hasHastag = appState.tweets.filter(twit => {
+        return twit.body.split(' ').filter(word => word === hastag)
+    })
+    console.log(hasHastag);
+}
 
 // calling functions
 handleTextField();
