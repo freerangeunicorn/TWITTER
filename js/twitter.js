@@ -57,7 +57,7 @@ const handleTweetButton = () => {
     let tweetHTML = inputSplitedByWords.map(word => word[0] == '#' ? `<a href='#'>${word}</a>` : word ).join(' ');
     
     //save tweet to appState
-    saveTweet(appState.currentUser, tweetHTML);
+    saveTweet(appState.currentUser, tweetHTML, null);
     //render to screen
     renderTweets();
     //clearing text field
@@ -69,7 +69,7 @@ const handleTweetButton = () => {
 }
 
 //save tweet to appState
-const saveTweet = (currentUser, tweetBody) => {
+const saveTweet = (currentUser, tweetBody, parentId ) => {
     num++;
     appState.tweets.push({
         user : currentUser,
@@ -77,7 +77,7 @@ const saveTweet = (currentUser, tweetBody) => {
         tweetDate : new Date(),
         id : num,
         isLiked : false,
-        parent : null,
+        parent : parentId,
         isRetweeted : false
     });
 }
@@ -106,7 +106,7 @@ const renderTweets = () => {
                 <div id="contentButton" class="row  m-0">
                     <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
                         <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                        <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
+                        <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
                         <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
                         ${tweet.isLiked ? 
                         '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
@@ -118,7 +118,6 @@ const renderTweets = () => {
         </div>\n
         `
     }).join('');
-    console.log(HTML)
     HTML !== null ? feedArea.innerHTML = HTML : console.log('nothing inside HTML, abort renderTweets');
 }
 
@@ -129,6 +128,20 @@ const toggleLike = index => {
     const likeBtn = document.getElementById(`likeBtn${index}`);
     currentTweet.isLiked ? likeBtn.innerHTML = '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>' : likeBtn.innerHTML = '<i class="far fa-heart rounded-circle"></i>';
 }
+
+//retweet btn
+const retweet = id => {
+    console.log("appstate", appState)
+    const parentTweet = appState.tweets.find(tweet => tweet.id == id)
+    parentTweet.isRetweeted = true;
+    let tweetedBody = document.getElementById(`tweet${id}`).innerHTML;
+    // console.log("body", tweetedBody)
+    
+    console.log("tweet body", tweetedBody)
+    saveTweet(appState.currentUser, tweetedBody, id);
+    renderTweets();
+}
+
 // calling functions
 handleTextField();
 
