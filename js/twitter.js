@@ -100,7 +100,7 @@ const renderTweets = () => {
                             </div>
                             <div class="col"></div>
                             <div class="col-1 p-0 text-right">
-                                <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
+                                <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" onclick="deleteTweet(${tweet.id})" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
                             </div>
                         </div>
                         <p id="tweetBody${tweet.id}" class="text-left">${tweetBodyHTML}</p>
@@ -147,7 +147,7 @@ const renderReTweet = (tweet) => {
                     </div>
                     <div class="col"></div>
                     <div class="col-1 p-0 text-right">
-                        <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
+                        <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" onclick="deleteTweet(${tweet.id})" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
                     </div>
                 </div>
                 <p id="tweetBody${tweet.id}" class="text-left">
@@ -164,9 +164,7 @@ const renderReTweet = (tweet) => {
                                         <span><strong>${parentTweet.user}</strong> @${parentTweet.user}</span> • <span>${moment(parentTweet.tweetDate).fromNow()}</span>
                                     </div>
                                     <div class="col"></div>
-                                    <div class="col-1 p-0 text-right">
-                                        <a id="expandBtn" class="faButton text-decoration-none rounded-circle expandBtn" href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
-                                    </div>
+                                    
                                 </div>
                                 <p id="tweetBody${parentTweet.id}" class="text-left">${parentTweetBodyHTML}</p>
                             </div>
@@ -213,7 +211,14 @@ const retweet = id => {
     renderTweets();
 }
 
-
+//delete function
+const deleteTweet = (id) =>{
+    appState.tweets = appState.tweets.filter(tweet=>{return tweet.parent != id});
+    console.log(appState.tweets,"don't have retweet")
+    appState.tweets = appState.tweets.filter(tweet => { return tweet.id != id});
+    console.log(appState,"deleted");
+    renderTweets();
+}
 
 
 // calling functions
