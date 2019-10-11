@@ -146,11 +146,15 @@ textarea :focus {
 }
 /* Header  */
 /* Right Side Menu */
+@media screen and (max-width: 800px){
 #rightSideMenu {
     border: 2px white solid;
     background-color: white;
     padding-top: 5px;
-}
+    visibility: hidden;
+    clear: both;
+    display: none;
+}}
 
 .searchBar {
     border-radius: 15px;
@@ -159,7 +163,7 @@ textarea :focus {
 .trend {
     margin-top: 2%;
     margin-bottom: 6%;
-    background-color:#ccecdf;
+    background-color:#f6f8fa;
     list-style-type: none;
     border-radius: 10px;
     padding: 4% 4% 0% 4%;
@@ -194,4 +198,31 @@ textarea :focus {
      background-color: transparent
  }
 
+ .mai {
+     border-radius: 50%;
+ }
+ 
+ .phong {
+    border-radius: 50%;
+ }
+
+ .hai {
+    border-radius: 50%;
+ }
+.huy {
+    border-radius: 50%;
+}
  /* Right Side Menu */
+
+/* add style to js */
+.img-add {
+    width: 70%;
+    height: auto;
+}
+
+.avatarLee {
+    width: 40px;
+    height: auto;
+    border-radius: 50%
+}
+
