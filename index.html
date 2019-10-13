@@ -16,10 +16,10 @@
 <body>
     <main class="container-fluid">
         <div class="row">
-            <div class="col-0 col-xl-1 placeHolder"></div>
-            <div id="leftSideMenu" class="col-8 col-lg-2 font-weight-bold d-flex flex-column justify-content-start align-items-start">
+            <div class="col-0 col-lg placeHolder"></div>
+            <div id="leftSideMenu" class="col-8 col-lg font-weight-bold d-flex flex-column justify-content-start align-items-start">
                 <div class="twittericon my-2">
-                    <img src="img/twitter.png" class="birdimg">
+                    <i id="twitterLogo" class="fab fa-twitter fa-3x"></i>
                 </div>
                 <div class="card border-0" style="width: 15rem;">
                     <div class="card-body">
@@ -33,6 +33,13 @@
                         <h5 class="card-title mb-4"><i class="fas fa-user-circle"></i>&nbsp Profile</h5>
                         <h5 class="card-title mb-4"><i class="fas fa-info-circle"></i>&nbsp More</h5>
                         <a href="#" class="btn btn-primary rounded-pill btn-lg largeTweetBtn">Tweet</a>
+                        <div class="row d-flex justify-content-between mt-4 colorPicker mx-auto">
+                            <i class="fas fa-circle circle-blue" onclick="changeColor('rgb(29, 161, 242)')"></i>
+                            <i class="fas fa-circle circle-red" onclick="changeColor('rgb(219, 27, 27)')"></i>
+                            <i class="fas fa-circle circle-yellow" onclick="changeColor('rgb(216,216,13)','rgb(218,218,142)')"></i>
+                            <i class="fas fa-circle circle-pink" onclick="changeColor('rgb(248,174,187)', 'rgb(243,211,216)')"></i>
+                            <i class="fas fa-circle circle-purple" onclick="changeColor('rgb(128, 7, 128)', 'rgb(214,123,214)')"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,8 +48,8 @@
                     <div class="col-2">
                         <h5 style="font-weight: 900">Home</h5>
                     </div>
-                    <div class="col-7 col-md-8"></div>
-                    <div class="col-3 col-md-2 text-right">
+                    <div class="col-7"></div>
+                    <div class="col-3 text-right">
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="">Sign in</button>
                     </div>
                 </div>
@@ -128,7 +135,7 @@
                 </div>
             </div>
             <!-- END OF TWEET TEMPLATE -->
-            <div id="rightSideMenu" class="col-lg-3">
+            <div id="rightSideMenu" class="col-md col-lg-3">
                 <div class="input-group my-3">
                     <input class="form-control searchBar" placeholder="Search Tweeter" type="text">
                     <div class="input-group-btn">
@@ -147,16 +154,16 @@
                 <div class="trend list-group list-group-flush font-weight-bold">
                     <li class="h4 border-bottom">Who to follow</li>
                     <li class="myLi"><img src="images/mai.png" class="mai" alt="Avatar" width="35"
-                            height="auto"><span>&nbsp Mai <small>• 3M followers</small></span><button type="button"
+                            height="auto"><span>&nbsp Mai <small class="follower">• 3M followers</small></span><button type="button"
                             class="btn-outline-primary myBtn">Follow</button></li>
                     <li class="myLi"><img src="images/phongavatar.png" class="phong" alt="Avatar" width="35"
-                            height="auto"><span>&nbsp Phong <small>• 1M followers</small></span><button type="button"
+                            height="auto"><span>&nbsp Phong <small class="follower">• 1M followers</small></span><button type="button"
                             class="btn-outline-primary myBtn rounded-pill">Follow</button></li>
                     <li class="myLi"><img src="images/ahai.png" class="hai" alt="Avatar" width="35"
-                            height="auto"><span>&nbsp Hai <small>• 9000 followers</small></span><button type="button"
+                            height="auto"><span>&nbsp Hai <small class="follower">• 9000 followers</small></span><button type="button"
                             class="btn-outline-primary myBtn rounded-pill">Follow</button></li>
                     <li class="myLi"><img src="images/huy.png" class="huy" alt="Avatar" width="35"
-                            height="auto"><span>&nbsp Huy <small>• 500k followers</small></span><button type="button"
+                            height="auto"><span>&nbsp Huy <small class="follower">• 500k followers</small></span><button type="button"
                             class="btn-outline-primary myBtn rounded-pill">Follow</button></li>
                     <li class="myLi mt-3"><a href="#">Show more</a></li>
                 </div>
