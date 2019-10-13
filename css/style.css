@@ -42,7 +42,7 @@
 
 .retweet {
     background-color: #fff;
-    min-height: 7rem; 
+    min-height: 5rem; 
     border: 0.7px solid rgb(246,248,250);
 }
 
@@ -289,3 +289,15 @@ border-radius: 50%;
     background-color: rgb(29, 161, 242);
     text-decoration: none;
 }
+
+@media screen and (max-width: 1280px){
+.placeHolder {
+    visibility: hidden;
+}
+}
+
+@media screen and (max-width: 1920px){
+    .placeHolder {
+        visibility: visible;
+    }
+    }
