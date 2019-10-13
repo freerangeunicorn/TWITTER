@@ -114,20 +114,20 @@
                             </div> -->
 
                             <!-- <div id="content" class="col-11 py-2 pl-3 pr-1"> -->
-                                <!-- <div id="text" class="row container m-0 pl-0 pr-3"> -->
-                                    <!-- <div class="row m-0 mb-1 container-fluid p-0"> -->
-                                        <!-- <div id="tweetTitle" class="col-8 pl-0 mt-1">
+                            <!-- <div id="text" class="row container m-0 pl-0 pr-3"> -->
+                            <!-- <div class="row m-0 mb-1 container-fluid p-0"> -->
+                            <!-- <div id="tweetTitle" class="col-8 pl-0 mt-1">
                                             <span><strong>L. Messi</strong> @LionelMessi</span> • <span>15 mins</span>
                                         </div> -->
-                                        <!-- <div class="col"></div>
+                            <!-- <div class="col"></div>
                                         <div class="col-1 p-0 text-right">
                                             <a id="expandBtn" class="faButton text-decoration-none rounded-circle"
                                                 href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
                                         </div>
                                     </div> -->
 
-                                    <!-- Tweet Template - this should be rendered by Js -->
-                                    <!-- <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
+                            <!-- Tweet Template - this should be rendered by Js -->
+                            <!-- <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
 
                                         <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
                                             <img src="images/avatar-placeholder.png" alt="avatar-img" width="50"
@@ -188,8 +188,8 @@
                                             <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                                         </div>
                                     </div> -->
-                                    <!-- END OF TWEET TEMPLATE -->
-                                <!-- </div> -->
+                            <!-- END OF TWEET TEMPLATE -->
+                            <!-- </div> -->
                             <!-- </div> -->
                             <!-- END OF TWEET TEMPLATE -->
                         </div>
@@ -260,10 +260,41 @@
                 </div>
             </div>
         </div>
+
+
     </main>
 
 
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
