@@ -102,7 +102,7 @@ const renderTweets = (arr) => {
         if (tweet.parent === null) {
             // console.log('start render tweet, id: ', tweet.id);
             let tweetBodyHTML = tweet.body.split(' ').map(word => {
-                console.log(word.slice(0,3));
+                // console.log(word.slice(0,3));
                 if (word[0] == '#' || word[0] == '@'){
                     return `<a href='#' onclick="findHastag('${word}')">${word}</a>`;
                 } else if (word.slice(0, 4) == 'http'){
@@ -254,6 +254,26 @@ const findHastag = (hastag) => {
     document.getElementById("refresh").innerHTML= `${hastag} x`;
     renderTweets(hasHastag);
 }
+
+// add modal
+$('#exampleModal').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget) // Button that triggered the modal
+    let recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    let modal = $(this)
+    modal.find('.modal-title').text('Sign in Twitter')
+    modal.find('.modal-body input').val(recipient)
+  })
+
+const getUserName = () => {
+    let userName = $("#exampleModal #recipient-name").val();
+    // console.log(userName);
+    appState.currentUser = userName;
+    $("#text").attr('placeholder',`What's up ${userName}?`);
+    // console.log(appState.currentUser)
+}
+
 
 // calling functions
 handleTextField();
