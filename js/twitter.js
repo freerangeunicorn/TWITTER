@@ -8,16 +8,16 @@ const textField = document.getElementById('text');
 const remainingChars = document.getElementById('remainingChars');
 const tweetButton = document.getElementById('tweetButton');
 const feedArea = document.getElementById('feed');
-let num = 0;
+let num = 111;
 
 //call API
 async function getApi(){ 
     let response = await fetch('https://api.myjson.com/bins/17rdla');
     let user = await response.json();
     // appState = JSON.parse(user)
-    console.log(user, typeof(user));
+    // console.log(user, typeof(user));
     appState = user;
-    console.log("appstate", appState)
+    // console.log("appstate", appState)
     renderTweets(appState.tweets)
 }
 
@@ -95,15 +95,25 @@ const saveTweet = (currentUser, tweetBody, parentId ) => {
 }
 
 const renderTweets = (arr) => {
-    let HTML = arr.map(tweet => {
+    let copyarray = arr.slice();
+    copyarray.sort((a,b) => b.id - a.id)
+
+    let HTML = copyarray.map(tweet => {
         if (tweet.parent === null) {
             // console.log('start render tweet, id: ', tweet.id);
-            let tweetBodySplitedByWords = tweet.body.split(' ');
-            let tweetBodyHTML = tweetBodySplitedByWords.map(word => word[0] == '#' || word[0] == '@' ? `<a href='#' onclick="findHastag('${word}')">${word}</a>` : word ).join(' ');
+            let tweetBodyHTML = tweet.body.split(' ').map(word => {
+                console.log(word.slice(0,3));
+                if (word[0] == '#' || word[0] == '@'){
+                    return `<a href='#' onclick="findHastag('${word}')">${word}</a>`;
+                } else if (word.slice(0, 4) == 'http'){
+                    console.log("http", word);
+                    return `<img src="${word}" alt="this is ur picture hehe" class="img-add"></img>`;
+                } return word}).join(' ');
+            
             return `
             <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
                 <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-                    <img src="img/avatar-placeholder.png" alt="avatar-img" width="50" height="auto">
+                    <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
                 </div>
                 <div id="content" class="col-11 py-2 pl-3 pr-1">
                     <div id="text" class="row container m-0 pl-0 pr-3">
@@ -150,7 +160,7 @@ const renderReTweet = (tweet) => {
     return `
     <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
         <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-            <img src="img/avatar-placeholder.png" alt="avatar-img" width="50" height="auto">
+            <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
         </div>
         <div id="content" class="col-11 py-2 pl-3 pr-1">
             <div id="text" class="row container m-0 pl-0 pr-3">
@@ -168,7 +178,7 @@ const renderReTweet = (tweet) => {
                     <!-- Parent tweet content -->
                     <div id="tweet${parentTweet.id}" class="row container-fluid border p-0 m-0 mb-1">
                         <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-                            <img src="img/avatar-placeholder.png" alt="avatar-img" width="50" height="auto">
+                            <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
                         </div>
                         <div id="content" class="col-11 py-2 pl-3 pr-1">
                             <div id="text" class="row container m-0 pl-0 pr-3">
