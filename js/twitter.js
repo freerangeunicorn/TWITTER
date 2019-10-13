@@ -21,8 +21,6 @@ async function getApi(){
     renderTweets(appState.tweets)
 }
 
-
-
 // there blow belong to character count
 const allowedChars = 140;
 let count = 0;
@@ -111,11 +109,11 @@ const renderTweets = (arr) => {
                 } return word}).join(' ');
             
             return `
-            <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
-                <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-                    <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
+            <div id="tweet${tweet.id}" class="row container-fluid p-0 m-0 mb-1 tweet">
+                <div id="feedAvatar" class="col-2 pt-3 pl-3 pr-2">
+                    <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img">
                 </div>
-                <div id="content" class="col-11 py-2 pl-3 pr-1">
+                <div id="content" class="col-10 py-2 pl-0 pr-1">
                     <div id="text" class="row container m-0 pl-0 pr-3">
                         <div class="row m-0 mb-1 container-fluid p-0">
                             <div id="tweetTitle" class="col-9 pl-0 mt-1">
@@ -130,14 +128,14 @@ const renderTweets = (arr) => {
                     </div>
     
                     <div id="contentButton" class="row  m-0">
-                        <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
+                        <div class="col-12 col-md-12 col-lg-8 d-flex justify-content-between p-0">
                             <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
                             <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
                             <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
                             ${tweet.isLiked ? 
                             '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
                             : '<i class="far fa-heart rounded-circle"></i>'}</a>
-                            <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
+                            <a id="shareBtn" class="faButton text-decoration-none shareBtn" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -155,14 +153,20 @@ const renderTweets = (arr) => {
 // this func in charge of render the retweets
 const renderReTweet = (tweet) => {
     let parentTweet = appState.tweets.find(t => t.id == tweet.parent);
-    // console.log("prent tweet",parentTweet)
-    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' || word[0] == '@' ? `<a href='#' onclick="findHastag(${word})">${word}</a>` : word ).join(' ');
+    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => {
+        if (word[0] == '#' || word[0] == '@'){
+            return `<a href='#' onclick="findHastag('${word}')">${word}</a>`;
+        } else if (word.slice(0, 4) == 'http'){
+            console.log("http", word);
+            return `<img src="${word}" alt="this is ur picture hehe" class="img-add"></img>`;
+        } return word}).join(' ');
+
     return `
-    <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
-        <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-            <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
+    <div id="tweet${tweet.id}" class="row container-fluid p-0 m-0 mb-1 tweet">
+        <div id="feedAvatar" class="col-2 pt-3 pl-3 pr-2">
+            <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img">
         </div>
-        <div id="content" class="col-11 py-2 pl-3 pr-1">
+        <div id="content" class="col-10 py-2 pl-0 pr-1">
             <div id="text" class="row container m-0 pl-0 pr-3">
                 <div class="row m-0 mb-1 container-fluid p-0">
                     <div id="tweetTitle" class="col-9 pl-0 mt-1">
@@ -176,14 +180,14 @@ const renderReTweet = (tweet) => {
                 <p id="tweetBody${tweet.id}" class="text-left">
                     
                     <!-- Parent tweet content -->
-                    <div id="tweet${parentTweet.id}" class="row container-fluid border p-0 m-0 mb-1">
-                        <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-                            <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
+                    <div id="tweet${parentTweet.id}" class="retweet row container-fluid p-0 m-0 mb-1 rounded">
+                        <div id="feedAvatar" class="col-2 pt-3 pl-3 pr-0">
+                            <img src="images/avatar-placeholder.png" class="avatarLee avaReTweet" alt="avatar-img-retweet">
                         </div>
-                        <div id="content" class="col-11 py-2 pl-3 pr-1">
+                        <div id="content" class="col-10 py-2 pl-3 pr-1">
                             <div id="text" class="row container m-0 pl-0 pr-3">
                                 <div class="row m-0 mb-1 container-fluid p-0">
-                                    <div id="tweetTitle" class="col-9 pl-0 mt-1">
+                                    <div id="tweetTitle" class="col-12 pl-0 mt-1">
                                         <span><strong>${parentTweet.user}</strong> @${parentTweet.user}</span> • <span>${moment(parentTweet.tweetDate).fromNow()}</span>
                                     </div>
                                     <div class="col"></div>
@@ -199,14 +203,14 @@ const renderReTweet = (tweet) => {
             </div>
 
             <div id="contentButton" class="row  m-0">
-                <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
+                <div class="col-12 col-md-12 col-lg-8 d-flex justify-content-between p-0">
                     <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                    <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
+                    <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
                     <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
                     ${tweet.isLiked ? 
                     '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
                     : '<i class="far fa-heart rounded-circle"></i>'}</a>
-                    <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
+                    <a id="shareBtn" class="faButton text-decoration-none shareBtn" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                 </div>
             </div>
         </div>
@@ -264,7 +268,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     let modal = $(this)
     modal.find('.modal-title').text('Sign in Twitter')
     modal.find('.modal-body input').val(recipient)
-  })
+})
 
 const getUserName = () => {
     let userName = $("#exampleModal #recipient-name").val();
