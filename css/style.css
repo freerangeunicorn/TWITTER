@@ -4,18 +4,46 @@
 
 /* header */
 #header, #mainTweet{
+    background-color: #fff;
     border: 0.5px solid rgb(246,248,250);
 } 
 
 #mainTweet {
     min-height: 7rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    background-color: #e6ecf0;
 }
+
+#avatar, #tweetArea {
+    background-color: #fff;
+}
+
+#remainingChars {
+    font-size: .9rem;
+}
+
+#leftButtonMainTweet :hover {
+    background-color: rgb(223, 236, 247);
+    color: rgb(155, 190, 218);
+    padding: 7px;
+    border-radius: 50%;
+}
+
 
 /* TweetTemplate inside Feed - Hai */
 
-#tweetTemplate{
+
+#tweetTemplate, .tweet {
+    background-color: #fff;
     min-height: 7rem; 
+    border: 0.7px solid rgb(246,248,250);
+    border-top: none;
+}
+
+.retweet {
+    background-color: #fff;
+    min-height: 7rem; 
+    border: 0.7px solid rgb(246,248,250);
 }
 
 /* this removes resize button at the right corner of the text area */
@@ -48,6 +76,7 @@ textarea :focus {
 .retweetBtn :hover {
     background-color: rgb(223, 247, 227);
     color: rgb(143, 199, 152);
+    border-radius: 50%;
 }
 
 .likeBtn :hover {
@@ -68,10 +97,10 @@ textarea :focus {
 /* END */
 
 /* left side menu */
-#leftSideMenu {
+/* #leftSideMenu {
     position: relative;
     left: 7%;
-}
+} */
 .card-body{
     border: none;
     
@@ -94,7 +123,6 @@ textarea :focus {
     width: 100%;
     position: relative;
     left: 0px;
-   
 }
 
 /* end */
@@ -137,6 +165,8 @@ textarea :focus {
     border-radius: 18px;
     padding: 6px 15px 6px 15px;
     font-weight: bold; 
+    outline: none;
+    border:none;
 }
 #remainingChars{
     color: rgb(29, 161, 242);
@@ -160,6 +190,7 @@ textarea :focus {
     visibility: hidden;
     clear: both;
     display: none;
+    padding-left: 1rem;
 }}
 
 .searchBar {
@@ -174,16 +205,17 @@ textarea :focus {
     border-radius: 10px;
     padding: 4% 4% 0% 4%;
 }
- .myLi{
+.myLi{
     height: 40px;
     line-height: 10px;
+    margin-top: 5px;
     margin-bottom: 1px; 
     position: relative;
     top : 5px;
     cursor: pointer;
- }
+}
 
- .ulFoot {
+.ulFoot {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
@@ -191,40 +223,39 @@ textarea :focus {
     position: relative;
     right : 20px;
     top : 5px;
- }
+}
 
- .myBtn {
-     height: 30px;
-     padding-bottom: 1px;
-     width: 80px;
-     border-radius: 15px;
-     position: absolute;
-     right: 16px;
-     bottom: 10px;
-     background-color: transparent
- }
+.myBtn {
+    height: 30px;
+    padding-bottom: 1px;
+    width: 80px;
+    border-radius: 15px;
+    position: absolute;
+    right: 16px;
+    bottom: 10px;
+    background-color: transparent
+}
 
- .btn-sm {
-     margin-top: 2%;
-     margin-bottom: 2%;
-     position: relative;
-     left: 80%;
- }
+.btn-sm {
+    background-color: rgb(29, 161, 242);
+    border: none;
+}
 
- .mai {
-     border-radius: 50%;
- }
- 
- .phong {
+.mai {
     border-radius: 50%;
- }
+}
 
- .hai {
-    border-radius: 50%;
- }
+.phong {
+border-radius: 50%;
+}
+
+.hai {
+border-radius: 50%;
+}
 .huy {
     border-radius: 50%;
 }
+
  /* Right Side Menu */
 
 /* add style to js */
@@ -234,8 +265,27 @@ textarea :focus {
 }
 
 .avatarLee {
-    width: 40px;
+    width: 55px;
     height: auto;
     border-radius: 50%
 }
 
+.avaReTweet {
+    width: 45px;
+}
+
+#largeTweetBtn {
+    background-color: rgb(29, 161, 242);
+    border: none;
+}
+
+.card-body > a {
+    background-color: rgb(29, 161, 242);
+    border: none;
+    text-decoration: none;
+}
+
+.rightSideMenu > a {
+    background-color: rgb(29, 161, 242);
+    text-decoration: none;
+}
