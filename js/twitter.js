@@ -8,7 +8,7 @@ const textField = document.getElementById('text');
 const remainingChars = document.getElementById('remainingChars');
 const tweetButton = document.getElementById('tweetButton');
 const feedArea = document.getElementById('feed');
-let num = 0;
+let num = 111;
 
 //call API
 async function getApi(){ 
@@ -95,7 +95,10 @@ const saveTweet = (currentUser, tweetBody, parentId ) => {
 }
 
 const renderTweets = (arr) => {
-    let HTML = arr.map(tweet => {
+    let copyarray = arr.slice();
+    copyarray.sort((a,b) => b.id - a.id)
+
+    let HTML = copyarray.map(tweet => {
         if (tweet.parent === null) {
             // console.log('start render tweet, id: ', tweet.id);
             let tweetBodyHTML = tweet.body.split(' ').map(word => {
