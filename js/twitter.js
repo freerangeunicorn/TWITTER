@@ -357,6 +357,13 @@ const changeColor = (mainColor, subColor) => {
     document.documentElement.style.setProperty('--secondary-color', subColor);
 }
 
+// add real search bar
+const searchBar = () => {
+    let keyWord = document.getElementById("searchBar").value;
+    // console.log("key search", keyWord)
+    window.location = `https://twitter.com/search?q=${keyWord}&src=recent_search_click`;
+    
+}
 
 // calling functions
 handleTextField();
