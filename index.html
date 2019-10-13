@@ -16,7 +16,7 @@
 <body>
     <main class="container-fluid">
         <div class="row">
-            <div id="leftSideMenu" class="col-md-4 col-lg-3">
+            <div id="leftSideMenu" class="col-md-4 col-lg-3 font-weight-bold">
                 <div class="twittericon">
                     <img src="img/twitter.png" class="birdimg">
                 </div>
@@ -115,20 +115,20 @@
                             </div> -->
 
                             <!-- <div id="content" class="col-11 py-2 pl-3 pr-1"> -->
-                                <!-- <div id="text" class="row container m-0 pl-0 pr-3"> -->
-                                    <!-- <div class="row m-0 mb-1 container-fluid p-0"> -->
-                                        <!-- <div id="tweetTitle" class="col-8 pl-0 mt-1">
+                            <!-- <div id="text" class="row container m-0 pl-0 pr-3"> -->
+                            <!-- <div class="row m-0 mb-1 container-fluid p-0"> -->
+                            <!-- <div id="tweetTitle" class="col-8 pl-0 mt-1">
                                             <span><strong>L. Messi</strong> @LionelMessi</span> • <span>15 mins</span>
                                         </div> -->
-                                        <!-- <div class="col"></div>
+                            <!-- <div class="col"></div>
                                         <div class="col-1 p-0 text-right">
                                             <a id="expandBtn" class="faButton text-decoration-none rounded-circle"
                                                 href="#"><i class="fas fa-chevron-down rounder-circle"></i></a>
                                         </div>
                                     </div> -->
 
-                                    <!-- Tweet Template - this should be rendered by Js -->
-                                    <!-- <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
+                            <!-- Tweet Template - this should be rendered by Js -->
+                            <!-- <div id="tweetTemplate" class="row container-fluid border p-0 m-0">
 
                                         <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
                                             <img src="images/avatar-placeholder.png" alt="avatar-img" width="50"
@@ -189,8 +189,8 @@
                                             <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                                         </div>
                                     </div> -->
-                                    <!-- END OF TWEET TEMPLATE -->
-                                <!-- </div> -->
+                            <!-- END OF TWEET TEMPLATE -->
+                            <!-- </div> -->
                             <!-- </div> -->
                             <!-- END OF TWEET TEMPLATE -->
                         </div>
@@ -212,6 +212,9 @@
             </div>
             <!-- END OF TWEET TEMPLATE -->
             <div id="rightSideMenu" class="col-lg-3">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"
+                    data-whatever="">Sign in</button>
+
                 <div class="input-group">
                     <input class="form-control searchBar" placeholder="Search Tweeter" type="text">
                     <div class="input-group-btn">
@@ -234,13 +237,13 @@
                             class="btn-outline-primary myBtn">Follow</button></li>
                     <li class="myLi"><img src="images/phongavatar.png" class="phong" alt="Avatar" width="35"
                             height="auto"><span>&nbsp Phong</span><button type="button"
-                            class="btn-outline-primary myBtn">Follow</button></li>
+                            class="btn-outline-primary myBtn rounded-pill">Follow</button></li>
                     <li class="myLi"><img src="images/ahai.png" class="hai" alt="Avatar" width="35"
                             height="auto"><span>&nbsp Hai</span><button type="button"
-                            class="btn-outline-primary myBtn">Follow</button></li>
+                            class="btn-outline-primary myBtn rounded-pill">Follow</button></li>
                     <li class="myLi"><img src="images/huy.png" class="huy" alt="Avatar" width="35"
                             height="auto"><span>&nbsp Huy</span><button type="button"
-                            class="btn-outline-primary myBtn">Follow</button></li>
+                            class="btn-outline-primary myBtn rounded-pill">Follow</button></li>
                     <li class="myLi"><a href="#">Show more</a></li>
                 </div>
                 <div class="rightFooter">
@@ -261,10 +264,41 @@
                 </div>
             </div>
         </div>
+
+
     </main>
 
 
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign in</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="recipient-name" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" id="message-text">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="getUserName()">Sign in</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

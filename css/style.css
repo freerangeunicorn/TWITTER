@@ -67,7 +67,11 @@ textarea :focus {
 
 /* END */
 
-
+/* left side menu */
+#leftSideMenu {
+    position: relative;
+    left: 7%;
+}
 .card-body{
     border: none;
     
@@ -87,11 +91,13 @@ textarea :focus {
 }
 
 .btn-lg {
-    width: 70%;
+    width: 100%;
     position: relative;
-    left: 50px;
+    left: 0px;
    
 }
+
+/* end */
 
 #header{
     padding: 15px  0 10px 25px;
@@ -194,8 +200,15 @@ textarea :focus {
      border-radius: 15px;
      position: absolute;
      right: 16px;
-     bottom: 23px;
+     bottom: 10px;
      background-color: transparent
+ }
+
+ .btn-sm {
+     margin-top: 2%;
+     margin-bottom: 2%;
+     position: relative;
+     left: 80%;
  }
 
  .mai {
