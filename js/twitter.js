@@ -135,7 +135,7 @@ const renderTweets = (arr) => {
                     <div id="text" class="row container m-0 pl-0 pr-3">
                         <div class="row m-0 mb-1 container-fluid p-0">
                             <div id="tweetTitle" class="col-9 pl-0 mt-1">
-                                <span><strong>${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
+                                <span><strong class="name">${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
                             </div>
                             <div class="col"></div>
                             <div class="col-1 p-0 text-right">
@@ -224,7 +224,7 @@ const renderReTweet = (tweet) => {
             <div id="text" class="row container m-0 pl-0 pr-3">
                 <div class="row m-0 mb-1 container-fluid p-0">
                     <div id="tweetTitle" class="col-9 pl-0 mt-1">
-                        <span><strong>${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
+                        <span><strong class="name">${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
                     </div>
                     <div class="col"></div>
                     <div class="col-1 p-0 text-right">
@@ -242,7 +242,7 @@ const renderReTweet = (tweet) => {
                             <div id="text" class="row container m-0 pl-0 pr-3">
                                 <div class="row m-0 mb-1 container-fluid p-0">
                                     <div id="tweetTitle" class="col-12 pl-0 mt-1">
-                                        <span><strong>${parentTweet.user}</strong> @${parentTweet.user}</span> • <span>${moment(parentTweet.tweetDate).fromNow()}</span>
+                                        <span><strong class="name">${parentTweet.user}</strong> @${parentTweet.user}</span> • <span>${moment(parentTweet.tweetDate).fromNow()}</span>
                                     </div>
                                     <div class="col"></div>
                                     
@@ -349,6 +349,12 @@ const getUserName = () => {
             imageLink = 'images/avatar-placeholder.png';
     }
     document.getElementById('mainTweetAvatar').setAttribute('src', `${imageLink}`);
+}
+
+// Hai added buttons to change colors
+const changeColor = (mainColor, subColor) => {
+    document.documentElement.style.setProperty('--primary-color', mainColor);
+    document.documentElement.style.setProperty('--secondary-color', subColor);
 }
 
 
