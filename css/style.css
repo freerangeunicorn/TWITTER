@@ -1,21 +1,57 @@
+:root {
+    --primary-color: rgb(29, 161, 242);
+    --secondary-color: rgb(163, 204, 230);
+    --main-bg-color: #fff;
+    --sub-bg-color: #f6f8fa;
+    --main-border: rgb(246,248,250);
+}
+
 * :focus {
     outline: none;
 }
 
 /* header */
 #header, #mainTweet{
-    border: 0.5px solid rgb(246,248,250);
+    background-color: var(--main-bg-color);
+    border: 0.9px solid var(--main-border);
 } 
 
 #mainTweet {
     min-height: 7rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    background-color: var(--sub-bg-color);
 }
+
+#avatar, #tweetArea {
+    background-color: var(--main-bg-color);
+}
+
+#remainingChars {
+    font-size: .9rem;
+}
+
+#leftButtonMainTweet :hover {
+    background-color: rgb(223, 236, 247);
+    color: rgb(155, 190, 218);
+    padding: 7px;
+    border-radius: 50%;
+}
+
 
 /* TweetTemplate inside Feed - Hai */
 
-#tweetTemplate{
+
+#tweetTemplate, .tweet {
+    background-color: var(--main-bg-color);
     min-height: 7rem; 
+    border: 0.9px solid var(--main-border);
+    border-top: none;
+}
+
+.retweet {
+    background-color: var(--main-bg-color);
+    min-height: 5rem; 
+    border: 0.9px solid var(--main-border);
 }
 
 /* this removes resize button at the right corner of the text area */
@@ -48,6 +84,7 @@ textarea :focus {
 .retweetBtn :hover {
     background-color: rgb(223, 247, 227);
     color: rgb(143, 199, 152);
+    border-radius: 50%;
 }
 
 .likeBtn :hover {
@@ -68,10 +105,10 @@ textarea :focus {
 /* END */
 
 /* left side menu */
-#leftSideMenu {
+/* #leftSideMenu {
     position: relative;
     left: 7%;
-}
+} */
 .card-body{
     border: none;
     
@@ -94,7 +131,6 @@ textarea :focus {
     width: 100%;
     position: relative;
     left: 0px;
-   
 }
 
 /* end */
@@ -130,16 +166,18 @@ textarea :focus {
 #leftButtonMainTweet > i{
     margin-left: 20px;
     font-size: 20px;
-    color: rgba(29,161,242,1.00);
+    color: var(--primary-color);
 }
 #tweetButton {
-    background-color: rgb(29, 161, 242);
+    background-color: var(--primary-color);
     border-radius: 18px;
     padding: 6px 15px 6px 15px;
     font-weight: bold; 
+    outline: none;
+    border:none;
 }
 #remainingChars{
-    color: rgb(29, 161, 242);
+    color: var(--primary-color);
     margin-right: 10px;
 }
 #rightButtonMainTweet{
@@ -160,7 +198,30 @@ textarea :focus {
     visibility: hidden;
     clear: both;
     display: none;
+    padding-left: 1rem;
 }}
+
+@media screen and (max-width: 1400px){
+.follower {
+    visibility: hidden;
+    clear: both;
+    display: none;
+}}
+
+.trend >li > a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.trend >li > a :hover {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.trend >li :hover {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
 
 .searchBar {
     border-radius: 15px;
@@ -169,62 +230,81 @@ textarea :focus {
 .trend {
     margin-top: 2%;
     margin-bottom: 6%;
-    background-color:#f6f8fa;
+    background-color:var(--sub-bg-color);
     list-style-type: none;
     border-radius: 10px;
     padding: 4% 4% 0% 4%;
 }
- .myLi{
+.myLi{
     height: 40px;
     line-height: 10px;
+    margin-top: 5px;
     margin-bottom: 1px; 
     position: relative;
     top : 5px;
     cursor: pointer;
- }
+}
 
- .ulFoot {
+.ulFoot {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
-    font-size: 14px;
+    font-size: 13px;
     position: relative;
     right : 20px;
     top : 5px;
- }
+    color:#949494;
+}
 
- .myBtn {
-     height: 30px;
-     padding-bottom: 1px;
-     width: 80px;
-     border-radius: 15px;
-     position: absolute;
-     right: 16px;
-     bottom: 10px;
-     background-color: transparent
- }
+.ulFoot > li > a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
 
- .btn-sm {
-     margin-top: 2%;
-     margin-bottom: 2%;
-     position: relative;
-     left: 80%;
- }
+.ulFoot > li :hover {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
 
- .mai {
-     border-radius: 50%;
- }
- 
- .phong {
+.myBtn {
+    height: 30px;
+    padding-bottom: 1px;
+    width: 80px;
+    border-radius: 15px;
+    position: absolute;
+    right: 16px;
+    bottom: 10px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.myBtn :hover{
+    background-color: (--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-sm {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.mai {
     border-radius: 50%;
- }
+}
 
- .hai {
-    border-radius: 50%;
- }
+.phong {
+border-radius: 50%;
+}
+
+.hai {
+border-radius: 50%;
+}
 .huy {
     border-radius: 50%;
 }
+
  /* Right Side Menu */
 
 /* add style to js */
@@ -234,41 +314,79 @@ textarea :focus {
 }
 
 .avatarLee {
-    width: 40px;
+    width: 55px;
     height: auto;
     border-radius: 50%
 }
-  
-.heartUnliked {
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-    background-image:url( 'https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');
-    background-position: left;
-    background-repeat:no-repeat;
-    background-size:2900%;
-  }
-  
-.heartLiked {
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-    background-image:url( 'https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');
-    background-position: right;
-    background-repeat:no-repeat;
-    background-size:2900%;
-  }
-  
-.heartUnliked:hover {
-    background-position:right;
-  }
-  
-.is_animating {
-    animation: heart-burst .8s steps(28) 1;
-  }
-  
-@keyframes heart-burst {
-    from {background-position:left;}
-    to { background-position:right;}
-  }
-  
+
+.avaReTweet {
+    width: 45px;
+}
+
+#largeTweetBtn {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.card-body > a {
+    background-color: var(--primary-color);
+    border: none;
+    text-decoration: none;
+}
+
+.rightSideMenu > a {
+    background-color: var(--primary-color);
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1280px){
+.placeHolder {
+    visibility: hidden;
+}
+}
+
+@media screen and (max-width: 1920px){
+.placeHolder {
+    visibility: visible;
+}
+}
+
+#twitterLogo {
+    color: var(--primary-color);
+    margin-left: 1rem;
+}
+
+
+.name {
+    color: var(--primary-color);
+}
+
+/* color picker */
+.colorPicker {
+    width: 70%;
+}
+
+.circle-blue {
+    color: rgb(29, 161, 242);
+    border: solir 1px white;
+}
+
+.circle-red {
+    color: rgb(219, 27, 27);
+    border: solir 1px white;
+}
+
+.circle-yellow {
+    color: rgb(231, 231, 37);
+    border: solir 1px white;
+}
+
+.circle-pink {
+    color: rgb(255, 192, 203);
+    border: solir 1px white;
+}
+
+.circle-purple {
+    color: rgb(128, 7, 128);
+    border: solir 1px white;
+}

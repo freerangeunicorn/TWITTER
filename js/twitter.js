@@ -11,7 +11,7 @@ const feedArea = document.getElementById('feed');
 let num = 111;
 
 //call API
-async function getApi(){ 
+async function getApi() {
     let response = await fetch('https://api.myjson.com/bins/17rdla');
     let user = await response.json();
     // appState = JSON.parse(user)
@@ -20,8 +20,6 @@ async function getApi(){
     // console.log("appstate", appState)
     renderTweets(appState.tweets)
 }
-
-
 
 // there blow belong to character count
 const allowedChars = 140;
@@ -67,7 +65,7 @@ const renderRemaindingNumber = () => {
 //this triggered when tweet button clicked
 const handleTweetButton = () => {
     let userInput = textField.value;
-    
+
     //save tweet to appState
     saveTweet(appState.currentUser, userInput, null);
     //render to screen
@@ -81,45 +79,63 @@ const handleTweetButton = () => {
 }
 
 //save tweet to appState
-const saveTweet = (currentUser, tweetBody, parentId ) => {
+const saveTweet = (currentUser, tweetBody, parentId) => {
     num++;
     appState.tweets.push({
-        user : currentUser,
-        body : tweetBody,
-        tweetDate : new Date(),
-        id : num,
-        isLiked : false,
-        parent : parentId,
-        isRetweeted : false,
+        user: currentUser,
+        body: tweetBody,
+        tweetDate: new Date(),
+        id: num,
+        isLiked: false,
+        parent: parentId,
+        isRetweeted: false,
     });
 }
 
 const renderTweets = (arr) => {
     let copyarray = arr.slice();
-    copyarray.sort((a,b) => b.id - a.id)
+    copyarray.sort((a, b) => b.id - a.id)
 
     let HTML = copyarray.map(tweet => {
         if (tweet.parent === null) {
             // console.log('start render tweet, id: ', tweet.id);
             let tweetBodyHTML = tweet.body.split(' ').map(word => {
                 // console.log(word.slice(0,3));
-                if (word[0] == '#' || word[0] == '@'){
+                if (word[0] == '#' || word[0] == '@') {
                     return `<a href='#' onclick="findHastag('${word}')">${word}</a>`;
-                } else if (word.slice(0, 4) == 'http'){
+                } else if (word.slice(0, 4) == 'http') {
                     console.log("http", word);
                     return `<img src="${word}" alt="this is ur picture hehe" class="img-add"></img>`;
-                } return word}).join(' ');
-            
+                } return word
+            }).join(' ');
+            let imageLink = '';
+            switch (tweet.user) {
+                case 'Mai':
+                    imageLink = 'images/mai.png';
+                    break;
+                case 'Phong':
+                    imageLink = 'images/phongavatar.png';
+                    break;
+                case 'Huy':
+                    imageLink = 'images/huy.png';
+                    break;
+                case 'Hai':
+                    imageLink = 'images/ahai.png';
+                    break;
+                default:
+                    imageLink = 'images/avatar-placeholder.png';
+            }
+
             return `
-            <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
-                <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-                    <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
+            <div id="tweet${tweet.id}" class="row container-fluid p-0 m-0 mb-1 tweet">
+                <div id="feedAvatar" class="col-2 pt-3 pl-3 pr-2">
+                    <img src="${imageLink}" class="avatarLee" alt="avatar-img">
                 </div>
-                <div id="content" class="col-11 py-2 pl-3 pr-1">
+                <div id="content" class="col-10 py-2 pl-0 pr-1">
                     <div id="text" class="row container m-0 pl-0 pr-3">
                         <div class="row m-0 mb-1 container-fluid p-0">
                             <div id="tweetTitle" class="col-9 pl-0 mt-1">
-                                <span><strong>${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
+                                <span><strong class="name">${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
                             </div>
                             <div class="col"></div>
                             <div class="col-1 p-0 text-right">
@@ -130,14 +146,14 @@ const renderTweets = (arr) => {
                     </div>
     
                     <div id="contentButton" class="row  m-0">
-                        <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
+                        <div class="col-12 col-md-12 col-lg-8 d-flex justify-content-between p-0">
                             <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
                             <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
                             <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
-                            ${tweet.isLiked ? 
-                            '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
-                            : '<i class="far fa-heart rounded-circle"></i>'}</a>
-                            <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
+                            ${tweet.isLiked ?
+                    '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
+                    : '<i class="far fa-heart rounded-circle"></i>'}</a>
+                            <a id="shareBtn" class="faButton text-decoration-none shareBtn" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -155,18 +171,60 @@ const renderTweets = (arr) => {
 // this func in charge of render the retweets
 const renderReTweet = (tweet) => {
     let parentTweet = appState.tweets.find(t => t.id == tweet.parent);
-    // console.log("prent tweet",parentTweet)
-    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => word[0] == '#' || word[0] == '@' ? `<a href='#' onclick="findHastag(${word})">${word}</a>` : word ).join(' ');
+    let parentTweetBodyHTML = parentTweet.body.split(' ').map(word => {
+        if (word[0] == '#' || word[0] == '@') {
+            return `<a href='#' onclick="findHastag('${word}')">${word}</a>`;
+        } else if (word.slice(0, 4) == 'http') {
+            console.log("http", word);
+            return `<img src="${word}" alt="this is ur picture hehe" class="img-add"></img>`;
+        } return word
+    }).join(' ');
+
+    let imageLink = '';
+    switch (tweet.user) {
+        case 'Mai':
+            imageLink = 'images/mai.png';
+            break;
+        case 'Phong':
+            imageLink = 'images/phongavatar.png';
+            break;
+        case 'Huy':
+            imageLink = 'images/huy.png';
+            break;
+        case 'Hai':
+            imageLink = 'images/ahai.png';
+            break;
+        default:
+            imageLink = 'images/avatar-placeholder.png';
+    }
+    let parentImageLink = '';
+    switch (parentTweet.user) {
+        case 'Mai':
+            parentImageLink = 'images/mai.png';
+            break;
+        case 'Phong':
+            parentImageLink = 'images/phongavatar.png';
+            break;
+        case 'Huy':
+            parentImageLink = 'images/huy.png';
+            break;
+        case 'Hai':
+            parentImageLink = 'images/ahai.png';
+            break;
+        default:
+            parentImageLink = 'images/avatar-placeholder.png';
+    }
+
     return `
-    <div id="tweet${tweet.id}" class="row container-fluid border p-0 m-0 mb-1">
-        <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-            <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
+    <div id="tweet${tweet.id}" class="row container-fluid p-0 m-0 mb-1 tweet">
+        <div id="feedAvatar" class="col-2 pt-3 pl-3 pr-2">
+            <img src="${imageLink}" class="avatarLee" alt="avatar-img">
         </div>
-        <div id="content" class="col-11 py-2 pl-3 pr-1">
+        <div id="content" class="col-10 py-2 pl-0 pr-1">
             <div id="text" class="row container m-0 pl-0 pr-3">
                 <div class="row m-0 mb-1 container-fluid p-0">
                     <div id="tweetTitle" class="col-9 pl-0 mt-1">
-                        <span><strong>${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
+                        <span><strong class="name">${tweet.user}</strong> @${tweet.user}</span> • <span>${moment(tweet.tweetDate).fromNow()}</span>
                     </div>
                     <div class="col"></div>
                     <div class="col-1 p-0 text-right">
@@ -176,15 +234,15 @@ const renderReTweet = (tweet) => {
                 <p id="tweetBody${tweet.id}" class="text-left">
                     
                     <!-- Parent tweet content -->
-                    <div id="tweet${parentTweet.id}" class="row container-fluid border p-0 m-0 mb-1">
-                        <div id="feedAvatar" class="col-1 pt-3 pl-3 pr-0">
-                            <img src="images/avatar-placeholder.png" class="avatarLee" alt="avatar-img" width="50" height="auto">
+                    <div id="tweet${parentTweet.id}" class="retweet row container-fluid p-0 m-0 mb-1 rounded">
+                        <div id="feedAvatar" class="col-2 pt-3 pl-3 pr-0">
+                            <img src="${parentImageLink}" class="avatarLee avaReTweet" alt="avatar-img-retweet">
                         </div>
-                        <div id="content" class="col-11 py-2 pl-3 pr-1">
+                        <div id="content" class="col-10 py-2 pl-3 pr-1">
                             <div id="text" class="row container m-0 pl-0 pr-3">
                                 <div class="row m-0 mb-1 container-fluid p-0">
-                                    <div id="tweetTitle" class="col-9 pl-0 mt-1">
-                                        <span><strong>${parentTweet.user}</strong> @${parentTweet.user}</span> • <span>${moment(parentTweet.tweetDate).fromNow()}</span>
+                                    <div id="tweetTitle" class="col-12 pl-0 mt-1">
+                                        <span><strong class="name">${parentTweet.user}</strong> @${parentTweet.user}</span> • <span>${moment(parentTweet.tweetDate).fromNow()}</span>
                                     </div>
                                     <div class="col"></div>
                                     
@@ -199,14 +257,14 @@ const renderReTweet = (tweet) => {
             </div>
 
             <div id="contentButton" class="row  m-0">
-                <div class="col-12 col-md-9 col-lg-5 d-flex justify-content-between p-0">
+                <div class="col-12 col-md-12 col-lg-8 d-flex justify-content-between p-0">
                     <a id="commentBtn" class="faButton text-decoration-none mr-2 commentBtn" href="#"><i class="far fa-comment rounded-circle"></i>20</a>
-                    <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
+                    <a id="retweetBtn${tweet.id}" class="faButton text-decoration-none mr-2 retweetBtn" onclick="retweet(${tweet.id})" href="#"><i class="fas fa-retweet rounded-circle"></i>130</a>
                     <a id="likeBtn${tweet.id}" class="faButton text-decoration-none mr-2 likeBtn" onclick="toggleLike(${tweet.id})">
-                    ${tweet.isLiked ? 
-                    '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
-                    : '<i class="far fa-heart rounded-circle"></i>'}</a>
-                    <a id="shareBtn" class="faButton text-decoration-none" href="#"><i class="far fa-share-square rounded-circle"></i></a>
+                    ${tweet.isLiked ?
+            '<i class="fas fa-heart rounded-circle aria-hidden="true""></i>'
+            : '<i class="far fa-heart rounded-circle"></i>'}</a>
+                    <a id="shareBtn" class="faButton text-decoration-none shareBtn" href="#"><i class="far fa-share-square rounded-circle"></i></a>
                 </div>
             </div>
         </div>
@@ -235,11 +293,11 @@ const retweet = id => {
 }
 
 //delete function
-const deleteTweet = (id) =>{
-    appState.tweets = appState.tweets.filter(tweet=>{return tweet.parent != id});
-    console.log(appState.tweets,"don't have retweet")
-    appState.tweets = appState.tweets.filter(tweet => { return tweet.id != id});
-    console.log(appState,"deleted");
+const deleteTweet = (id) => {
+    appState.tweets = appState.tweets.filter(tweet => { return tweet.parent != id });
+    console.log(appState.tweets, "don't have retweet")
+    appState.tweets = appState.tweets.filter(tweet => { return tweet.id != id });
+    console.log(appState, "deleted");
     renderTweets(appState.tweets);
 }
 
@@ -247,11 +305,11 @@ const deleteTweet = (id) =>{
 const findHastag = (hastag) => {
     console.log("hastag", hastag)
     let hasHastag = appState.tweets.filter(twit => {
-        
+
         return twit.body.includes(hastag);
-        })
+    })
     console.log("hasHagtag", hasHastag)
-    document.getElementById("refresh").innerHTML= `${hastag} x`;
+    document.getElementById("refresh").innerHTML = `${hastag} x`;
     renderTweets(hasHastag);
 }
 
@@ -264,16 +322,48 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     let modal = $(this)
     modal.find('.modal-title').text('Sign in Twitter')
     modal.find('.modal-body input').val(recipient)
-  })
+})
 
 const getUserName = () => {
     let userName = $("#exampleModal #recipient-name").val();
     // console.log(userName);
     appState.currentUser = userName;
-    $("#text").attr('placeholder',`What's up ${userName}?`);
+    $("#text").attr('placeholder', `What's up ${userName}?`);
     // console.log(appState.currentUser)
+    //change Avatar
+    let imageLink = '';
+    switch (appState.currentUser) {
+        case 'Mai':
+            imageLink = 'images/mai.png';
+            break;
+        case 'Phong':
+            imageLink = 'images/phongavatar.png';
+            break;
+        case 'Huy':
+            imageLink = 'images/huy.png';
+            break;
+        case 'Hai':
+            imageLink = 'images/ahai.png';
+            break;
+        default:
+            imageLink = 'images/avatar-placeholder.png';
+    }
+    document.getElementById('mainTweetAvatar').setAttribute('src', `${imageLink}`);
 }
 
+// Hai added buttons to change colors
+const changeColor = (mainColor, subColor) => {
+    document.documentElement.style.setProperty('--primary-color', mainColor);
+    document.documentElement.style.setProperty('--secondary-color', subColor);
+}
+
+// add real search bar
+const searchBar = () => {
+    let keyWord = document.getElementById("searchBar").value;
+    // console.log("key search", keyWord)
+    window.location = `https://twitter.com/search?q=${keyWord}&src=recent_search_click`;
+    
+}
 
 // calling functions
 handleTextField();
